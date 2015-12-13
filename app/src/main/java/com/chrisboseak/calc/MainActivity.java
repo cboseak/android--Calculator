@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
     boolean decimalAlready = false;
     boolean firstTime = true;
     boolean userEnteredNum = true;
-
-
+    TextView numDisplay;
+    TextView signDisplay;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,132 +45,69 @@ public class MainActivity extends AppCompatActivity {
         Button bDivide = (Button)findViewById(R.id.buttonDiv);
         Button bMultiply = (Button)findViewById(R.id.buttonMult);
         Button bEqual = (Button)findViewById(R.id.buttonEqual);
+        numDisplay = (TextView)findViewById(R.id.numberDisplay);
+        signDisplay =(TextView)findViewById(R.id.currSign);
 
-        final TextView numDisplay = (TextView)findViewById(R.id.numberDisplay);
-        final TextView signDisplay =(TextView)findViewById(R.id.currSign);
 
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(firstTime == true){
-                    numDisplay.setText("");
-                    userEnteredNum = true;
-                    decimalAlready = false;
-                }
-                numDisplay.append("1");
-                firstTime = false;
+                numClicked("1");
             }
         });
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(firstTime == true)
-                {
-                    numDisplay.setText("");
-                    userEnteredNum = true;
-                    decimalAlready = false;
-                }
-                numDisplay.append("2");
-                firstTime = false;
+                numClicked("2");
             }
         });
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(firstTime == true){
-                    numDisplay.setText("");
-                    userEnteredNum = true;
-                    decimalAlready = false;
-                }
-                userEnteredNum = true;
-                numDisplay.append("3");
-                firstTime = false;
+                numClicked("3");
             }
         });
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(firstTime == true){
-                    numDisplay.setText("");
-                    userEnteredNum = true;
-                    decimalAlready = false;
-                }
-                userEnteredNum = true;
-                numDisplay.append("4");
-                firstTime = false;
+                numClicked("4");
             }
         });
         b5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(firstTime == true){
-                    numDisplay.setText("");
-                    userEnteredNum = true;
-                    decimalAlready = false;
-                }
-                numDisplay.append("5");
-                firstTime = false;
+                numClicked("5");
             }
         });
         b6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(firstTime == true){
-                    numDisplay.setText("");
-                    userEnteredNum = true;
-                    decimalAlready = false;
-                }
-                numDisplay.append("6");
-                firstTime = false;
+                numClicked("6");
             }
         });
         b7.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                if(firstTime == true){
-                    numDisplay.setText("");
-                    userEnteredNum = true;
-                    decimalAlready = false;
-                }
-                numDisplay.append("7");
-                firstTime = false;
-            }
+                public void onClick(View v) {
+                numClicked("7");
+                    }
         });
         b8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(firstTime == true){
-                    numDisplay.setText("");
-                    userEnteredNum = true;
-                    decimalAlready = false;
-                }
-                numDisplay.append("8");
-                firstTime = false;
+                numClicked("8");
             }
         });
         b9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(firstTime == true){
-                    numDisplay.setText("");
-                    userEnteredNum = true;
-                    decimalAlready = false;
-                }
-                numDisplay.append("9");
-                firstTime = false;
+                numClicked("9");
             }
         });
         b0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(firstTime == true){
-                    numDisplay.setText("");
-                    userEnteredNum = true;
-                    decimalAlready = false;
-                }
-                numDisplay.append("0");
-                firstTime = false;
+                numClicked("0");
             }
         });
         bClear.setOnClickListener(new View.OnClickListener() {
@@ -289,7 +226,16 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
+    public void numClicked(String numPressed)
+    {
+        if(firstTime == true){
+            numDisplay.setText("");
+            userEnteredNum = true;
+            decimalAlready = false;
+        }
+        numDisplay.append(numPressed);
+        firstTime = false;
+    }
     public double doMath(double numOne, double numTwo, int opType)
     {
         //do not perform a math operation if there are no numbers to use because they haven't been entered

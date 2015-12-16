@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     double numberOne = 0;
     int lastOpTypePressed = 0;
     boolean decimalAlready = false;
@@ -49,153 +49,26 @@ public class MainActivity extends AppCompatActivity {
         signDisplay =(TextView)findViewById(R.id.currSign);
 
 
-
-        b1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numClicked("1");
-            }
-        });
-        b2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numClicked("2");
-            }
-        });
-        b3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numClicked("3");
-            }
-        });
-        b4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numClicked("4");
-            }
-        });
-        b5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numClicked("5");
-            }
-        });
-        b6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numClicked("6");
-            }
-        });
-        b7.setOnClickListener(new View.OnClickListener() {
-            @Override
-                public void onClick(View v) {
-                numClicked("7");
-                    }
-        });
-        b8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numClicked("8");
-            }
-        });
-        b9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numClicked("9");
-            }
-        });
-        b0.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numClicked("0");
-            }
-        });
-        bClear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numDisplay.setText("");
-                signDisplay.setText("");
-                decimalAlready = false;
-                numberOne = 0;
-            }
-        });
-        bPlus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signDisplay.setText("+");
-                if(numberOne != 0){
-                    numberOne = doMath(numberOne,Double.parseDouble(numDisplay.getText().toString()),lastOpTypePressed);
-                }else{
-                    numberOne = Double.parseDouble(numDisplay.getText().toString());
-                }
-                numDisplay.setText(""+numberOne);
-                userEnteredNum = false;
-                firstTime = true;
-                lastOpTypePressed = 1;
-            }
-        });
-        bMinus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signDisplay.setText("-");
-                if(numberOne != 0){
-                    numberOne = doMath(numberOne,Double.parseDouble(numDisplay.getText().toString()),lastOpTypePressed);
-                }else{
-                    numberOne = Double.parseDouble(numDisplay.getText().toString());
-                }
-                numDisplay.setText(""+numberOne);
-                userEnteredNum = false;
-                firstTime = true;
-                lastOpTypePressed = 2;
-            }
-        });
-        bDivide.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signDisplay.setText("/");
-                if(numberOne != 0){
-                    numberOne = doMath(numberOne,Double.parseDouble(numDisplay.getText().toString()),lastOpTypePressed);
-                }else{
-                    numberOne = Double.parseDouble(numDisplay.getText().toString());
-                }
-                numDisplay.setText(""+numberOne);
-                userEnteredNum = false;
-                firstTime = true;
-                lastOpTypePressed = 3;
-            }
-        });
-        bMultiply.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signDisplay.setText("x");
-                if(numberOne != 0){
-                    numberOne = doMath(numberOne,Double.parseDouble(numDisplay.getText().toString()),lastOpTypePressed);
-                }else{
-                    numberOne = Double.parseDouble(numDisplay.getText().toString());
-                }
-                numDisplay.setText(""+numberOne);
-                userEnteredNum = false;
-                firstTime = true;
-                lastOpTypePressed = 4;
-            }
-        });
+        //Listens for button clicks of buttons declared above
+        b1.setOnClickListener(this);
+        b2.setOnClickListener(this);
+        b3.setOnClickListener(this);
+        b4.setOnClickListener(this);
+        b5.setOnClickListener(this);
+        b6.setOnClickListener(this);
+        b7.setOnClickListener(this);
+        b8.setOnClickListener(this);
+        b9.setOnClickListener(this);
+        b0.setOnClickListener(this);
+        bClear.setOnClickListener(this);
+        bPlus.setOnClickListener(this);
+        bMinus.setOnClickListener(this);
+        bDivide.setOnClickListener(this);
+        bMultiply.setOnClickListener(this);
         bEqual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signDisplay.setText("=");
-                if(numberOne != 0){
-                    numberOne = doMath(numberOne,Double.parseDouble(numDisplay.getText().toString()),lastOpTypePressed);
-                }else{
-                    numberOne = Double.parseDouble(numDisplay.getText().toString());
-                }
-                numDisplay.setText(""+numberOne);
-                userEnteredNum = false;
-                firstTime = true;
-                lastOpTypePressed = 0;
-                /*
-                signDisplay.setText("=");
-                numberOne = numberOne + 0;
-                numDisplay.setText(""+numberOne);*/
+
             }
         });
         b0.setOnLongClickListener(new View.OnLongClickListener() {
@@ -235,6 +108,118 @@ public class MainActivity extends AppCompatActivity {
         }
         numDisplay.append(numPressed);
         firstTime = false;
+    }
+    @Override
+
+    // When a button is clicked, the onclick listener feed the button to here
+    // where the switch determines the action.
+    public void onClick(View v){
+        switch (v.getId()){
+            //BUTTON 0-9
+            case R.id.button0:
+                numClicked("0");
+                break;
+            case R.id.button1:
+                numClicked("1");
+                break;
+            case R.id.button2:
+                numClicked("2");
+                break;
+            case R.id.button3:
+                numClicked("3");
+                break;
+            case R.id.button4:
+                numClicked("4");
+                break;
+            case R.id.button5:
+                numClicked("5");
+                break;
+            case R.id.button6:
+                numClicked("6");
+                break;
+            case R.id.button7:
+                numClicked("7");
+                break;
+            case R.id.button8:
+                numClicked("8");
+                break;
+            case R.id.button9:
+                numClicked("9");
+                break;
+
+            //Clear Button
+            case R.id.buttonClear:
+                numDisplay.setText("");
+                signDisplay.setText("");
+                decimalAlready = false;
+                numberOne = 0;
+                break;
+
+            //Operation Buttons (+,-,/,*,=)
+            case R.id.buttonPlus:
+                signDisplay.setText("+");
+                if(numberOne != 0){
+                    numberOne = doMath(numberOne,Double.parseDouble(numDisplay.getText().toString()),lastOpTypePressed);
+                }else{
+                    numberOne = Double.parseDouble(numDisplay.getText().toString());
+                }
+                numDisplay.setText(""+numberOne);
+                userEnteredNum = false;
+                firstTime = true;
+                lastOpTypePressed = 1;
+                break;
+            case R.id.buttonMinus:
+                signDisplay.setText("-");
+                if(numberOne != 0){
+                    numberOne = doMath(numberOne,Double.parseDouble(numDisplay.getText().toString()),lastOpTypePressed);
+                }else{
+                    numberOne = Double.parseDouble(numDisplay.getText().toString());
+                }
+                numDisplay.setText(""+numberOne);
+                userEnteredNum = false;
+                firstTime = true;
+                lastOpTypePressed = 2;
+                break;
+            case R.id.buttonDiv:
+                signDisplay.setText("/");
+                if(numberOne != 0){
+                    numberOne = doMath(numberOne,Double.parseDouble(numDisplay.getText().toString()),lastOpTypePressed);
+                }else{
+                    numberOne = Double.parseDouble(numDisplay.getText().toString());
+                }
+                numDisplay.setText(""+numberOne);
+                userEnteredNum = false;
+                firstTime = true;
+                lastOpTypePressed = 3;
+                break;
+            case R.id.buttonMult:
+                signDisplay.setText("x");
+                if(numberOne != 0){
+                    numberOne = doMath(numberOne,Double.parseDouble(numDisplay.getText().toString()),lastOpTypePressed);
+                }else{
+                    numberOne = Double.parseDouble(numDisplay.getText().toString());
+                }
+                numDisplay.setText(""+numberOne);
+                userEnteredNum = false;
+                firstTime = true;
+                lastOpTypePressed = 4;
+                break;
+            case R.id.buttonEqual:
+                signDisplay.setText("=");
+                if(numberOne != 0){
+                    numberOne = doMath(numberOne,Double.parseDouble(numDisplay.getText().toString()),lastOpTypePressed);
+                }else{
+                    numberOne = Double.parseDouble(numDisplay.getText().toString());
+                }
+                numDisplay.setText(""+numberOne);
+                userEnteredNum = false;
+                firstTime = true;
+                lastOpTypePressed = 0;
+                break;
+
+            default:
+                break;
+        }
     }
     public double doMath(double numOne, double numTwo, int opType)
     {

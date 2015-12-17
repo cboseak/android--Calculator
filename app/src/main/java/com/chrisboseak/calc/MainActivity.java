@@ -27,8 +27,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
+
+        //BUTTON DECLARATIONS
         Button b0 = (Button)findViewById(R.id.button0);
         Button b1 = (Button)findViewById(R.id.button1);
         Button b2 = (Button)findViewById(R.id.button2);
@@ -65,15 +67,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bMinus.setOnClickListener(this);
         bDivide.setOnClickListener(this);
         bMultiply.setOnClickListener(this);
-        bEqual.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        bEqual.setOnClickListener(this);
 
-            }
-        });
+        //LONG CLICK of 0 key
         b0.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
+
+                // IF the current number has at lease one character AND if the current number is not a generated one(user input)
+                // THEN backspace
                 if (numDisplay.length() > 0 && userEnteredNum == true) {
                     String tempText = numDisplay.getText().toString();
                     numDisplay.setText(tempText.substring(0, tempText.length() - 1));
@@ -81,10 +83,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
             }
         });
+
+        //LONG CLICK of multiplication key
         bMultiply.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                if (firstTime == false && decimalAlready == false && userEnteredNum == true) {
+
+                // IF there is not already a number entered AND if the current number is not a generated one(user input)
+                // THEN add decimal and note that current number already has a decimal.
+                if (decimalAlready == false && userEnteredNum == true) {
+
+                    //IF decimal is the first character THEN put zero before it (i.e "0.1" instead of ".1")
+                    if(firstTime == true)
+                        numClicked("0");
                     numDisplay.append(".");
                     decimalAlready = true;
                 }
@@ -92,13 +103,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
-
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-    }
+    }*/
+
+    //function with all activity universal to a numbered button press.
+    //Params: numPressed - string that contains the number pressed
     public void numClicked(String numPressed)
     {
         if(firstTime == true){

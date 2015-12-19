@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     double numberOne = 0;
     int lastOpTypePressed = 0;
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     boolean userEnteredNum = true;
     TextView numDisplay;
     TextView signDisplay;
+    DecimalFormat df = new DecimalFormat("#.#####");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -177,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }else{
                     numberOne = Double.parseDouble(numDisplay.getText().toString());
                 }
-                numDisplay.setText(""+numberOne);
+                numDisplay.setText(df.format(numberOne).toString());
                 userEnteredNum = false;
                 firstTime = true;
                 lastOpTypePressed = 1;
@@ -189,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }else{
                     numberOne = Double.parseDouble(numDisplay.getText().toString());
                 }
-                numDisplay.setText(""+numberOne);
+                numDisplay.setText((df.format(numberOne).toString()));
                 userEnteredNum = false;
                 firstTime = true;
                 lastOpTypePressed = 2;
@@ -201,7 +204,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }else{
                     numberOne = Double.parseDouble(numDisplay.getText().toString());
                 }
-                numDisplay.setText(""+numberOne);
+                numDisplay.setText((df.format(numberOne).toString()));
                 userEnteredNum = false;
                 firstTime = true;
                 lastOpTypePressed = 3;
@@ -213,7 +216,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }else{
                     numberOne = Double.parseDouble(numDisplay.getText().toString());
                 }
-                numDisplay.setText(""+numberOne);
+                numDisplay.setText((df.format(numberOne).toString()));
                 userEnteredNum = false;
                 firstTime = true;
                 lastOpTypePressed = 4;
@@ -225,7 +228,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }else{
                     numberOne = Double.parseDouble(numDisplay.getText().toString());
                 }
-                numDisplay.setText(""+numberOne);
+                numDisplay.setText((df.format(numberOne).toString()));
                 userEnteredNum = false;
                 firstTime = true;
                 lastOpTypePressed = 0;

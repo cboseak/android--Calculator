@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
 
         //BUTTON DECLARATIONS
         Button b0 = (Button)findViewById(R.id.button0);
@@ -106,13 +104,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
-    /*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }*/
 
     //function with all activity universal to a numbered button press.
     //Params: numPressed - string that contains the number pressed
@@ -281,5 +272,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
